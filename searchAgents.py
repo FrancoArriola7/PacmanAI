@@ -26,8 +26,6 @@ description.
 Please only change the parts of the file you are asked to.  Look for the lines
 that say
 
-"*** YOUR CODE HERE ***"
-
 The parts you fill in start about 3/4 of the way down.  Follow the project
 description for details.
 
@@ -287,12 +285,11 @@ class CornersProblem(search.SearchProblem):
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
         # Please add any code here which you would like to use
         # in initializing the problem
-        "*** YOUR CODE HERE ***"
         self.visited,self.visitedlist={},[]
         self.cornersVisited=[]
         for corner in self.corners:
             if self.startingPosition == corner:
-                self.cornersVisited.append((corner,True))       #Initializing visitedcorners and visited nodes
+                self.cornersVisited.append((corner,True))       
             else:
                 self.cornersVisited.append((corner,False))
         self.cornersVisited=tuple(self.cornersVisited)
@@ -302,19 +299,17 @@ class CornersProblem(search.SearchProblem):
         Returns the start state (in your state space, not the full Pacman state
         space)
         """
-        "*** YOUR CODE HERE ***"
-        return(self.startingPosition,self.cornersVisited)  #returning the corners we have visited and the starting position
+        return(self.startingPosition,self.cornersVisited)  
         util.raiseNotDefined()
 
     def isGoalState(self, state):
         """
         Returns whether this search state is a goal state of the problem.
         """
-        "*** YOUR CODE HERE ***"
         iscornerVisited=True
         for corner in state[1]:
             allVisited=corner[1]
-            if allVisited is False:                 #Here we are just seeing if all corners are visited
+            if allVisited is False:                 
                 return False
         return iscornerVisited
         util.raiseNotDefined()
@@ -339,7 +334,6 @@ class CornersProblem(search.SearchProblem):
             #   nextx, nexty = int(x + dx), int(y + dy)
             #   hitsWall = self.walls[nextx][nexty]
 
-            "*** YOUR CODE HERE ***"
             x,y=state[0]
             cornerSt=state[1]
             new_CornerSt=[]
@@ -390,7 +384,6 @@ def cornersHeuristic(state, problem):
     corners = problem.corners # These are the corner coordinates
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
-    "*** YOUR CODE HERE ***"
     cornerSt=state[1]
     dist=0
     for corner in cornerSt:                                                     #We are using the same way manhattanheuristic does just for
@@ -528,7 +521,6 @@ class ClosestDotSearchAgent(SearchAgent):
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
 
-        "*** YOUR CODE HERE ***"
         actions=search.bfs(problem)
         return actions                                   #We are just calling the bfs we have implemented
         util.raiseNotDefined()
@@ -565,7 +557,6 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         complete the problem definition.
         """
         x,y = state
-        "*** YOUR CODE HERE ***"
         foodList=self.food.asList()
         distance,food=min([(util.manhattanDistance(state,food),food)for food in foodList])
         isGoal=state==food                                                                    #And in this function we examine if we are in goal state
